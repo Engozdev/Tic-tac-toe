@@ -8,9 +8,17 @@ class Board:
         self.height = height
         self.board = [[0] * width for _ in range(height)]
         # значения по умолчанию
-        self.left = 10
-        self.top = 10
+        self.left = 28
+        self.top = 28
         self.cell_size = cell_size
+
+    def show_letters(self, screen):
+        font = pygame.font.Font(None, 30)
+        lets = 'abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVXYZ'
+        x, y = 40, 5
+        for i in range(self.width):
+            text = font.render(lets[i], True, (0, 255, 0))
+            screen.blit(text, (x + 30 * i, y))
 
     def render(self, screen):
         for i in range(self.height):
@@ -33,6 +41,7 @@ class Board:
                 pygame.draw.rect(screen, pygame.Color('white'), (j * self.cell_size + self.left,
                                                                  i * self.cell_size + self.top,
                                                                  self.cell_size, self.cell_size), 1)
+        self.show_letters(screen)
 
     def get_cell(self, mouse_pos, player_order):
         global order
@@ -58,8 +67,8 @@ def main():
     b = int(input('Введите высоту поля: '))
     pygame.init()
     pygame.display.set_caption('Крестики-нолики')
-    cell = 35
-    size = a * cell + 20, b * cell + 20
+    cell = 30
+    size = a * cell + 56, b * cell + 56
     screen = pygame.display.set_mode(size)
     board = Board(a, b, cell)
     running = True
