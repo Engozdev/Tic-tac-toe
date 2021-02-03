@@ -14,7 +14,7 @@ class Board:
 
     def show_letters(self, screen):
         font = pygame.font.Font(None, 30)
-        lets = 'abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVXYZ'
+        lets = 'abcdefghijklnopqrstuvwxyz0123456789'
         x, y = 40, 5
         for i in range(self.width):
             text = font.render(lets[i], True, (0, 255, 0))
