@@ -75,13 +75,16 @@ class Board:
             else:
                 self.board[y][x] = 2
 
+    def check_victory(self):
+        pass
 
-def main(a, b, size, cell):
+
+def main(w, h, size, cell):
     global order
     pygame.init()
     pygame.display.set_caption('Крестики-нолики')
     screen = pygame.display.set_mode(size)
-    board = Board(a, b, cell)
+    board = Board(w, h, cell)
     running = True
     while running:
         for event in pygame.event.get():
@@ -97,11 +100,12 @@ def main(a, b, size, cell):
 
 if __name__ == '__main__':
     try:
-        a = int(input('Введите ширину поля: '))
-        b = int(input('Введите высоту поля: '))
+        a = int(input('Enter the width of the board: '))
+        b = int(input('Enter the height of the board: '))
+        win_am = int(input('Enter the number of tokens to win: '))
         if a < 1 or b < 1 or a > 35 or b > 35:
             raise ValueError
-    except Exception:
+    except ValueError:
         print('Recheck your input values')
         sys.exit()
     order = 0
