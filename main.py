@@ -18,31 +18,32 @@ class Board:
         lets = 'abcdefghijklnopqrstuvwxyz0123456789'
         fx, fy = 40, 5
         for i in range(self.width):
-            text = font.render(lets[i], True, (0, 255, 0))
+            text = font.render(lets[i], True, (51, 247, 255))
             screen.blit(text, (fx + 30 * i, fy))
 
         sx, sy = 10, 35
         for j in range(self.height):
-            text = font.render(lets[j], True, (0, 255, 0))
+            text = font.render(lets[j], True, (51, 247, 255))
             screen.blit(text, (sx, sy + 30 * j))
 
     def render(self, screen):
+        global order
         for i in range(self.height):
             for j in range(self.width):
                 if self.board[i][j] == 2:
-                    pygame.draw.circle(screen, pygame.Color('red'),
+                    pygame.draw.circle(screen, (255, 242, 51),
                                        (j * self.cell_size + self.left + self.cell_size // 2,
                                         i * self.cell_size + self.top + self.cell_size // 2), self.cell_size // 2 - 2,
-                                       1)
+                                       3)
                 elif self.board[i][j] == 1:
-                    pygame.draw.line(screen, pygame.Color('blue'), (j * self.cell_size + self.left + 2,
-                                                                    i * self.cell_size + self.top + 2),
+                    pygame.draw.line(screen, pygame.Color('red'), (j * self.cell_size + self.left + 2,
+                                                                   i * self.cell_size + self.top + 2),
                                      (j * self.cell_size + self.left + self.cell_size - 2,
-                                      i * self.cell_size + self.top + self.cell_size - 2), 3)
-                    pygame.draw.line(screen, pygame.Color('blue'), (j * self.cell_size + self.left + self.cell_size - 2,
-                                                                    i * self.cell_size + self.top + 2),
+                                      i * self.cell_size + self.top + self.cell_size - 2), 5)
+                    pygame.draw.line(screen, pygame.Color('red'), (j * self.cell_size + self.left + self.cell_size - 2,
+                                                                   i * self.cell_size + self.top + 2),
                                      (j * self.cell_size + self.left + 2,
-                                      i * self.cell_size + self.top + self.cell_size - 2), 3)
+                                      i * self.cell_size + self.top + self.cell_size - 2), 5)
 
                 pygame.draw.rect(screen, pygame.Color('white'), (j * self.cell_size + self.left,
                                                                  i * self.cell_size + self.top,
