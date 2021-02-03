@@ -15,10 +15,15 @@ class Board:
     def show_letters(self, screen):
         font = pygame.font.Font(None, 30)
         lets = 'abcdefghijklnopqrstuvwxyz0123456789'
-        x, y = 40, 5
+        fx, fy = 40, 5
         for i in range(self.width):
             text = font.render(lets[i], True, (0, 255, 0))
-            screen.blit(text, (x + 30 * i, y))
+            screen.blit(text, (fx + 30 * i, fy))
+
+        sx, sy = 10, 35
+        for j in range(self.height):
+            text = font.render(lets[j], True, (0, 255, 0))
+            screen.blit(text, (sx, sy + 30 * j))
 
     def render(self, screen):
         for i in range(self.height):
