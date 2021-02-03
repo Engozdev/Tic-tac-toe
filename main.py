@@ -1,4 +1,5 @@
 import pygame
+import sys
 
 
 class Board:
@@ -68,8 +69,14 @@ class Board:
 
 def main():
     global order
-    a = int(input('Введите ширину поля: '))
-    b = int(input('Введите высоту поля: '))
+    try:
+        a = int(input('Введите ширину поля: '))
+        b = int(input('Введите высоту поля: '))
+        if a < 1 or b < 1 or a > 35 or b > 35:
+            raise ValueError
+    except Exception:
+        print('Recheck your input values')
+        sys.exit()
     pygame.init()
     pygame.display.set_caption('Крестики-нолики')
     cell = 30
@@ -86,6 +93,7 @@ def main():
         screen.fill((0, 0, 0))
         board.render(screen)
         pygame.display.flip()
+    pygame.quit()
 
 
 if __name__ == '__main__':
