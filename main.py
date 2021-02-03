@@ -28,6 +28,7 @@ class Board:
 
     def render(self, screen):
         global order
+        global sze
         for i in range(self.height):
             for j in range(self.width):
                 if self.board[i][j] == 2:
@@ -48,6 +49,13 @@ class Board:
                 pygame.draw.rect(screen, pygame.Color('white'), (j * self.cell_size + self.left,
                                                                  i * self.cell_size + self.top,
                                                                  self.cell_size, self.cell_size), 1)
+        y = sze[1] - int(self.cell_size * 1.2)
+        x = sze[0] // 2
+        if order % 2 == 0:
+            pygame.draw.line(screen, pygame.Color('red'), (x - 25, y - 25), (x + 25, y + 25), 5)
+            pygame.draw.line(screen, pygame.Color('red'), (x + 25, y - 25), (x - 25, y + 25), 5)
+        else:
+            pygame.draw.circle(screen, (255, 242, 51), (x, y), 25, 3)
         self.show_letters(screen)
 
     def get_cell(self, mouse_pos, player_order):
@@ -68,20 +76,10 @@ class Board:
                 self.board[y][x] = 2
 
 
-def main():
+def main(a, b, size, cell):
     global order
-    try:
-        a = int(input('Введите ширину поля: '))
-        b = int(input('Введите высоту поля: '))
-        if a < 1 or b < 1 or a > 35 or b > 35:
-            raise ValueError
-    except Exception:
-        print('Recheck your input values')
-        sys.exit()
     pygame.init()
     pygame.display.set_caption('Крестики-нолики')
-    cell = 30
-    size = a * cell + 56, b * cell + 56
     screen = pygame.display.set_mode(size)
     board = Board(a, b, cell)
     running = True
@@ -98,5 +96,15 @@ def main():
 
 
 if __name__ == '__main__':
+    try:
+        a = int(input('Введите ширину поля: '))
+        b = int(input('Введите высоту поля: '))
+        if a < 1 or b < 1 or a > 35 or b > 35:
+            raise ValueError
+    except Exception:
+        print('Recheck your input values')
+        sys.exit()
     order = 0
-    main()
+    cll = 30
+    sze = a * cll + 56, b * cll + 100
+    main(a, b, sze, cll)
