@@ -9,22 +9,21 @@ class Board:
         self.height = height
         self.board = [[0] * width for _ in range(height)]
         # значения по умолчанию
-        self.left = 28
+        self.left = 40
         self.top = 28
         self.cell_size = cell_size
 
     def show_letters(self, screen):
         font = pygame.font.Font(None, 30)
-        lets = 'abcdefghijklnopqrstuvwxyz0123456789'
-        fx, fy = 40, 5
+        lets = 'abcdefghijklnopqrstuvwxyz'
+        fx, fy = 50, 5
         for i in range(self.width):
             text = font.render(lets[i], True, (51, 247, 255))
             screen.blit(text, (fx + 30 * i, fy))
-
         sx, sy = 10, 35
-        for j in range(self.height):
-            text = font.render(lets[j], True, (51, 247, 255))
-            screen.blit(text, (sx, sy + 30 * j))
+        for j in range(1, self.height + 1):
+            text = font.render(str(j), True, (51, 247, 255))
+            screen.blit(text, (sx, sy + 30 * (j - 1)))
 
     def render(self, screen):
         global order
@@ -75,9 +74,6 @@ class Board:
             else:
                 self.board[y][x] = 2
 
-    def check_victory(self):
-        pass
-
 
 def main(w, h, size, cell):
     global order
@@ -102,7 +98,6 @@ if __name__ == '__main__':
     try:
         a = int(input('Enter the width of the board: '))
         b = int(input('Enter the height of the board: '))
-        win_am = int(input('Enter the number of tokens to win: '))
         if a < 1 or b < 1 or a > 35 or b > 35:
             raise ValueError
     except ValueError:
