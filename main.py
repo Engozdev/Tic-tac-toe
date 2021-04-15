@@ -15,7 +15,8 @@ class Board:
 
     def show_letters(self, screen):
         font = pygame.font.Font(None, 30)
-        lets = 'abcdefghijklnopqrstuvwxyz'
+        # lets = 'abcdefghijklnopqrstuvwxyz'
+        lets = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
         fx, fy = 50, 5
         for i in range(self.width):
             text = font.render(lets[i], True, (51, 247, 255))
@@ -107,3 +108,5 @@ if __name__ == '__main__':
     cll = 30
     sze = a * cll + 56, b * cll + 100
     main(a, b, sze, cll)
+# создать голосовое управление
+# сделать функцию распознающую речь, и передавать ее вывод сюда
